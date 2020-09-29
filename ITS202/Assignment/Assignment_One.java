@@ -1,33 +1,45 @@
 import java.lang.Math;
 public class ArrayListTest{
 	public static void main(String[] args){
-		ArrayList obj = new ArrayList(10);
+		int initial = 4;
+		ArrayList obj = new ArrayList(initial);
+
 		//adding element to the array
 		obj.add(1);
-		obj.add(1);
-		obj.add(1);
+
+		
 		//element in the array before shrinking
 		System.out.println("Elements of before array:"); 
 		for (int i = 0; i < obj.size; i++) { 
 			System.out.println(obj.array[i] + " "); 
 		}
+
 		//size of the element before shrinking
-		System.out.println("size of the before element is "+obj.size);
-		System.out.println("count of the before element is "+obj.count);
+		System.out.println("size of the array before is "+obj.size);
+		System.out.println("Number of element in array bofore is "+obj.count);
 
 		int constant = obj.size();
 		obj.constant(constant);
 		obj.resize();
-		//element in the array after shrinking
-		System.out.println("Elements of after array:"); 
-		for (int i = 0; i < obj.size(); i++) { 
-			System.out.println(obj.array[i] + " "); 
-		}
-		//size of the element after shrinking
-		System.out.println("size of the element after is "+obj.size);
-		System.out.println("count of the element after is "+obj.count);
-		System.out.println("constant is "+obj.constant);
 
+		
+
+		//size of the element after shrinking
+		if(obj.size!=initial){
+			//element in the array after shrinking
+			System.out.println("Elements of after array:"); 
+			for (int i = 0; i < obj.size; i++) { 
+				System.out.println(obj.array[i] + " "); 
+			}
+			System.out.println("size of the has changed as array is full by 1/4 or 3/4 is "+obj.size);
+		}else{
+			System.out.println("Elements of after array:"); 
+			for (int i = 0; i < obj.size; i++) { 
+				System.out.println(obj.array[i] + " "); 
+			}
+			System.out.println("size of the element remains same that is "+obj.size);
+		}
+		System.out.println("Number of element in array after is "+obj.count);
 	}
 }
 
@@ -47,9 +59,6 @@ class ArrayList{
 
 	public void add(int add_ele)
 	{
-		// if(count > 0){
-		// 	shrinkSize();
-		// }
 		if(count!=size){
 			array[count] = add_ele;
 		}else{	
@@ -112,15 +121,16 @@ class ArrayList{
 
 	public void shrinkSize() 
     { 
-        int temp[] = null; 
-        if (count > 0) { 
-            temp = new int[count]; 
-            for (int i = 0; i < count; i++) {  
-                temp[i] = array[i]; 
-            } 
-  
-            initial_size = count; 
-            array = temp; 
-        } 
+    	//if(constant == full_1over4 || constant == full_3over4){
+    		int temp[] = null; 
+        	if (count > 0) { 
+            	temp = new int[count]; 
+            	for (int i = 0; i < count; i++) {  
+                	temp[i] = array[i]; 
+            	} 
+            	initial_size = count; 
+            	array = temp; 
+    		}
+       // } 
     } 
 }
