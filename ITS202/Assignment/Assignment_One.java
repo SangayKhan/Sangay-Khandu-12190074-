@@ -1,117 +1,105 @@
-public class Assignment_One{ 
-	private int array[]; 
-	private int count; 
-	private int size; 
+public class ArrayListTest{
+	public static void main(String[] args){
+		ArrayList obj = new ArrayList(4);
+		obj.add(1);
+		obj.add(2);
+		obj.add(3);
 
-	public Assignment_One(){ 
-		array = new int[4]; 
-		count = 0; 
-		size = 4; 
-	} 
-
-	public void add(int data){ 
-		if (count == 2){ 
-			growSize();
-		}else if(count == 0 ){
-			shrinkSize();
-		}else{
-			size();
+		System.out.println("Elements of array:"); 
+		for (int i = 0; i < obj.size; i++) { 
+			System.out.println(obj.array[i] + " "); 
 		}
-		array[count] = data; 
-		count++;//will it increment all the method or only the add mehtod 
-	} 
+		System.out.println("size of the element is "+obj.size);
+		System.out.println("length of the element is "+obj.array.length);
+	}
+}
 
-	public void growSize() { 
-		int temp[] = null; 
-		if (count == 2){ 
-			temp = new int[size * 2]; 
-			{ 
-				for (int i = 0; i < size; i++) { 
-					temp[i] = array[i]; 
-				} 
-			} 
-		} 
-		array = temp; 
-		size = size * 2; 
-	} 
+class ArrayList{
+	int size;
+	int count = 0;
+	int full_1over4;
+	int full_3over4;
+	int[] array;
 
-	public void shrinkSize() { 
-		int temp[] = null; 
-		if (count == 0){ 
-			temp = new int[size/2]; 
-			for (int i = 0; i < count; i++) { 
-				temp[i] = array[i]; 
-			} 
-			size = size/2; 
-			array = temp; 
-		} 
-	} 
-
- 	public void remove(){ 
-		if (count > 0){ 
-			array[count - 1] = 0; 
-			count--; 
-		} 
+	public ArrayList(int length){
+		size = length;
+		array = new int[size];
+		full_1over4 = (25*length)/100;
+		full_3over4 = (75*length)/100;
 	}
 
-	public int size(){
-		return array.length;
-	} 
+	public void add(int add_ele)
+	{
+		// if(count > 0){
+		// 	shrinkSize();
+		// }
+		if(count!=size){
+			array[count] = add_ele;
+			count++;
+			resize();
+		}else{
+			size = count+1;
+			int[] temp = new int[size];
+			for(int i=0;i<size;i++){
+				temp[i]=array[i];
+			}
+			array = temp;
+			count++;
+		}	
+	}
 
-	public static void main(String[] args) 
-	{ 
-		Assignment_One da = new Assignment_One(); 
+	public void pop()
+	{
+		if(count > 0){
+			// shrinkSize();
+            array[count] = 0; 
+            count--; 
+        } 	
+	}
 
-		da.add(1);
-		da.add(2);
-		da.add(3);
-		da.add(4);
-		da.add(5);   
+	public void resize()
+	{
+		if(count == full_1over4){
+			int[] temp = new int[size/2];
+			for(int i=0;i<count;i++){
+				temp[i]=array[i];
+			}
+			size = size/2;
+			array = temp;
+		}else if(count == full_3over4){
+			int[] temp = new int[size*2];
+			for(int i=0;i<count;i++){
+				temp[i]=array[i];
+			}
+			size = size*2;
+			array = temp;
+		}else{
+			size();
+		}	
+	}
 
-		// print all array elements after add 9 elements 
-		System.out.println("Elements of array:"); 
-		for (int i = 0; i < da.size; i++) { 
-			System.out.print(da.array[i] + " "); 
-		} 
+	public int size()
+	{
+		return size;
+	}
 
-		System.out.println(); 
+	public String toString()
+	{
+		String s=Integer.toString(size);
+		return s;
+	}
 
-		// print size of array and no of element 
-		System.out.println("Size of array: " + da.size); 
-		System.out.println("No of elements in array: " + 
-											da.count); 
-
-		// shrinkSize of array 
-		da.shrinkSize(); 
-
-		// print all array elements 
-		System.out.println("Elements of array "+ 
-				"after shrinkSize of array:"); 
-		for (int i = 0; i < da.size; i++) { 
-			System.out.print(da.array[i] + " "); 
-		} 
-		System.out.println(); 
-
-		// print size of array and no of element 
-		System.out.println("Size of array: " + da.size); 
-		System.out.println("No of elements in array: " + 
-											da.count); 
-
-		da.remove(); 
-
-		// print Elements of array after delete last 
-		// element 
-		System.out.println("Elements of array after" + 
-							" delete last element:"); 
-		for (int i = 0; i < da.size; i++) { 
-			System.out.print(da.array[i] + " "); 
-		} 
-
-		System.out.println(); 
-
-		// print size of array and no of element 
-		System.out.println("Size of array: " + da.size); 
-		System.out.println("No of elements in array: " + 
-											da.count);
-	} 
-} 
+	// public void shrinkSize() 
+ //    { 
+ //        int temp[] = null; 
+ //        if (count > 0) { 
+ //            temp = new int[count]; 
+ //            for (int i = 0; i < count; i++) {  
+ //                temp[i] = array[i]; 
+ //            } 
+  
+ //            size = count; 
+ //            array = temp; 
+ //        } 
+ //    } 
+}
