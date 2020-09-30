@@ -75,11 +75,12 @@ class ArrayList{
 		full_3over4 = Math.round((75*length)/100);
 	}
 
+	//will add new element in the array
 	public void add(int add_ele)
 	{
-		if(count!=size){
+		if(count!=size){//count should be less than size
 			array[count] = add_ele;
-		}else{
+		}else{//if the count is equal to number of size increase size by 1
 
 			int[] temp = new int[size+1];
 
@@ -92,11 +93,10 @@ class ArrayList{
 		}
 		count++;	
 	}
-
+	//remove the last element
 	public void pop()
 	{
 		if(count > 0){
-			// shrinkSize();
             array[count-1] = 0; 
             count--; 
         } 	
@@ -105,7 +105,7 @@ class ArrayList{
 	public int size(){
 		return size;
 	}
-
+	//resize the size of array to double if array is full by 75% and half if 25% full
 	public void resize()
 	{
 		if(initial_size == full_1over4){
@@ -144,7 +144,7 @@ class ArrayList{
 		String s=Integer.toString(size);
 		return s;
 	}
-
+	//make count and size same
 	public void shrinkSize() 
     { 
     	int temp[] = null;
