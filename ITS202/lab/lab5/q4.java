@@ -28,21 +28,22 @@ public class q4{
 		merge(a,lo,mid,hi);
 	}
 
-	public static void search(int[] a,int x){
+	public static int search(int[] a,int x,int lo,int hi){
 		sort(a,0,a.length-1);
-		int i=0,y;
+		if(hi<lo) return 0;
+		int y,i=0;
+		int mid=(lo+hi)/2;
 		for(y=0;y<a.length;y++){
-			if(x==a[y]){
-				i = 1;
-				break;
+			if(x>a[mid]){
+				search(a,x,mid+1,hi);
+			}else if(x<a[mid]){
+				search(a,x,lo,mid);
+			}else{
+				i=1;
+				return i;
 			}
 		}
-
-		if(i==1){
-			System.out.println("Element fount in index "+y);
-		}else{
-			System.out.println("Element not found");
-		}
+		return i;
 	}
 
 	public static void main(String[] args) {
@@ -50,6 +51,12 @@ public class q4{
 		System.out.print("Enter the Number: ");
 		int x = cin.nextInt();
 		int[] a = {1,2,8,5,6,9,3};
-		search(a,x);	
+		//int i = 0;
+		//search(a,x,0,a.length-1,i);
+		if(search(a,x,0,a.length-1)==1){
+			System.out.println("Element fount.");
+		}else{
+			System.out.println("No element.");
+		}
 	}
 }
