@@ -278,7 +278,7 @@ public class Assignment_two<Key extends Comparable<Key>, Value>{
         obj.put("NIMA",7);
         System.out.println(obj.size());
         System.out.println(obj.get("CHIMI"));
-        System.out.println(obj.floor("CHIMI"));
+        System.out.println(obj.floor("CHIMA"));
         obj.put("SONAM",8);
 
         for (String s : obj.keys("ABDUL","TASHI"))
