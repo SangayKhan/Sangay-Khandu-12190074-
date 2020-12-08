@@ -7,15 +7,11 @@ public class lab8<Key, Value>{
 	private int m;
 	private SequentialSearchST<Key, Value>[] st;
 
-	public lab8(){
-	 	st = (SequentialSearchST<Key, Value>[]) new SequentialSearchST<Key, Value>[m];
-	 	for(int i=0;i<m;i++) st[i] = new SequentialSearchST<Key, Value>();
-	 //this.(INIT_CAPACITY);
-	}
-
-
 	public lab8(int m){
 		this.m = m;
+	 	st = (SequentialSearchST<Key, Value>[]) new SequentialSearchST[m];
+	 	for(int i=0;i<m;i++) st[i] = new SequentialSearchST<Key, Value>();
+	 //this.(INIT_CAPACITY);
 	}
 
 	public void resize(int chains){
@@ -65,7 +61,7 @@ public class lab8<Key, Value>{
 
 		for(int i=0;i<m;i++){
 			if(mod==i){
-				st[i] = st[i].next;
+				st[i].delete(key);
 			}
 		}
 	}
