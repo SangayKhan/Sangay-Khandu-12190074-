@@ -1,12 +1,12 @@
 import java.util.NoSuchElementException;
 
-public class lab9 {
+public class Digraph {
     private final int V;                  // number of vertices in this digraph
     private int E;                        // number of edges in this digraph
     private LinkedList<Integer>[] adj;    // adj[v] = adjacency list for vertex v
     private int[] indegree;               // indegree[v] = indegree of vertex v
     
-    public lab9(int V) {
+    public Digraph(int V) {
     	this.V = V;
     	this.E = 0;
 
@@ -40,7 +40,7 @@ public class lab9 {
         return adj[v].keys();
     }
    
-/*    public lab9 reverse() {
+/*    public Digraph reverse() {
         
     }
     
@@ -50,7 +50,7 @@ public class lab9 {
 
     public static void main(String[] args) {
 
-        lab9 obj = new lab9(5);
+        Digraph obj = new Digraph(5);
         obj.addEdge(1,3);
         obj.addEdge(1,4);
         obj.addEdge(1,2);
